@@ -40,7 +40,7 @@ P.D. Se envía un archivo ".env para renombrar" con todos los datos menos pwd.
 
 ---
 #### Rutas:
-
+```
 - app.get("/generosdisp", generosdisp); ---> *Muestra los generos disponibles*
 
 [Link Generos disponibles](http://localhost:3000/generosdisp)
@@ -75,7 +75,7 @@ Solo disponible para los tres primeros registros.*
 - app.use((req, res) => {.... ---> *Ruta para paths no definidos o campos vacios.*
   
 [Link PATH incorrecto](http://localhost:3000/)
-
+```
 ---
 
 **Tablas de la base de datos**
