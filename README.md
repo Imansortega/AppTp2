@@ -29,11 +29,14 @@ Para usar nodemon hay que utilizar el comando "npm run devr".
 
 **Info adicional**
 
-/posters ---> hay tres posters para los registros 1,2 y 3 de la base. Se pueden consultar desde el resultado Json en el navegador.
+/posters ---> *hay tres posters para los registros 1,2 y 3 de la base. Se pueden consultar desde el resultado Json en el navegador.*
 
-/SQL dump ---> El dump de la base lista para cargarse.
+/SQL dump ---> *El dump de la base lista para cargarse.*
 
-/Documentacion y Postman Json ---> El DER de la base y Json para importar a Postman
+/Documentacion y Postman Json ---> *El Dbdesigner DER de la base, Model de Mysql para la base tp2_dev, JPG del esquema y Json para importar a Postman*
+
+
+P.D. Se envía un archivo ".env para renombrar" con todos los datos menos pwd.
 
 ---
 #### Rutas:

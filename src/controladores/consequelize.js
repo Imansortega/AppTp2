@@ -50,6 +50,7 @@ Actor.belongsToMany(Pelicula, {
 async function inicializa(req, res, next) {
   try {
     await sequelize.authenticate();
+    console.log("Conexión exitosa a la base de datos");
     await Pelicula.sync();
     await Categoria.sync();
     await Categoriainter.sync();

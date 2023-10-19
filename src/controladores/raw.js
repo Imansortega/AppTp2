@@ -1,4 +1,5 @@
 /* Controladores para las rutas */
+
 const sequelize = require("../conexion/connection");
 const { QueryTypes } = require("sequelize");
 const { Query1, Query2, Query3 } = require("../querys/listados");
@@ -9,7 +10,22 @@ const {
   Query13,
   Query14,
 } = require("../querys/querys");
+
+const fs = require("fs");
+const path = require("path");
 const validar = require("../utils/validador");
+
+async function inicializa(req, res, next) {
+  try {
+    await sequelize.authenticate();
+    console.log("Conexión exitosa a la base de datos");
+    next();
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Error en el servidor", description: error.message });
+  }
+}
 
 // Categorias disponibles
 async function categoriasdisp(req, res) {
@@ -79,7 +95,7 @@ async function catId(req, res) {
       });
       if (QueryRes.length == 0) {
         console.log("No se encontró la búsqueda !");
-        // 404: No found, 204: No content 
+        // 404: No found, 204: No content
         res.status(404).send("No se encontró la búsqueda !");
       } else {
         res.status(200).json(QueryRes);
@@ -102,7 +118,6 @@ async function catnombre(req, res) {
   try {
     // Se reemplaza el query con lo que ingreso el usuario
     const Querynew14 = Query14.replace("Consulta", req.params.nombre);
-
     const QueryRes = await sequelize.query(Querynew14, {
       type: QueryTypes.SELECT,
     });
@@ -130,7 +145,6 @@ async function catgenero(req, res) {
   try {
     // Se reemplaza el query con lo que ingreso el usuario
     const Querynew12 = Query12.replace("Consulta", req.params.genero);
-
     const QueryRes = await sequelize.query(Querynew12, {
       type: QueryTypes.SELECT,
     });
@@ -207,7 +221,8 @@ async function actor(req, res) {
 
 async function poster(req, res) {
   try {
-    const mipath = path.resolve(__dirname, "..", "..") + "/posters/" + req.params.posterid;
+    const mipath =
+      path.resolve(__dirname, "..", "..") + "/posters/" + req.params.posterid;
     fs.access(mipath, fs.constants.F_OK, (err) => {
       if (err) {
         res.status(404).json(`El archivo ${mipath} ---> no existe !`);
@@ -217,15 +232,15 @@ async function poster(req, res) {
         res.sendFile(mipath);
       }
     });
-    
   } catch (error) {
     res
       .status(500)
-      .json({ error: "Error en el servidor 0", description: error.message })
+      .json({ error: "Error en el servidor 0", description: error.message });
   }
 }
 
 module.exports = {
+  inicializa,
   catalogoraw,
   actor,
   catId,
@@ -234,5 +249,5 @@ module.exports = {
   catnombre,
   generosdisp,
   categoriasdisp,
-  poster
+  poster,
 };

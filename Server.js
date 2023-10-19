@@ -22,6 +22,7 @@ const {
 } = require("./src/controladores/consequelize");
 
 /* Rutas. ---> (Ctrl + click) abre las URL de ejemplo */
+
 // Authenticate y sync
 app.use(inicializa);
 

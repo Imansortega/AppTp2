@@ -1,4 +1,6 @@
-// Querys que devuelven listados
+/* Querys que devuelven listados */
+
+// Catálogo completo
 const Query1 = `SELECT 
 pelis.idpeli,
 pelis.poster,
