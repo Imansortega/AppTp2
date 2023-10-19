@@ -3,25 +3,39 @@
 #### Ignacio Manso 19/10/2023
 ---
 ### Descripción
-#### En este trabajo práctico la aplicación tiene dos opciones separadas las cuales comparten algunos módulos.
+#### En este trabajo práctico la aplicación tiene dos opciones separadas, Server.js y Server-raw.js, las cuales comparten algunos módulos.
 
-**Server.js**: Emplea sequalize para acceder a la base y realizar las consultas.
-Para usar nodemon hay que utilizar el comando npm run devs.
-El controlador es consequelize.js y emplea los modelos definidos en la correspondiente carpeta.
-La validación se realiza con las funciones en /src/utils/validador.
+**Server.js**:
 
-**Server-raw.js**: Emplea scripts Mysql los cuales están definidos en /src/querys. En listados.js están los listados estaticos para consultas sin búsquedas. En querys.js están las consultas para búsquedas. En dicho modulo las consultas tienen una palabra clave la cual será reemplazada en la aplicación por el parámetro de búsqueda.
-Para usar nodemon hay que utilizar el comando npm run devr.
+Emplea sequalize para acceder a la base y realizar las consultas.
+
+Para usar nodemon hay que utilizar el comando "npm run devs".
+
+El controlador es con sequelize.js y emplea los modelos definidos en la correspondiente carpeta.
+
+La validación de los inputs de usuario se realiza con las funciones en /src/utils/validador.
+
+**Server-raw.js**:
+
+Emplea la opción raw queries de sequalize, usando scripts Mysql, los cuales están definidos en /src/querys.
+
+En listados.js están los listados estaticos para consultas sin búsquedas.
+
+En querys.js están las consultas para búsquedas. En dicho modulo las consultas tienen una palabra clave ("Consulta") la cual será reemplazada en la aplicación por el parámetro de búsqueda id, nombre, gemero, etc.
+
+Para usar nodemon hay que utilizar el comando "npm run devr".
+
+---
 
 **Info adicional**
 
-/posters ---> hay tres posters para los registros 1,2 y 3 de la base. Se pueden consultar desde el resultado en el navegador.
+/posters ---> hay tres posters para los registros 1,2 y 3 de la base. Se pueden consultar desde el resultado Json en el navegador.
 
-/SQL dump ---> El dump de la base lista a cargarse
+/SQL dump ---> El dump de la base lista para cargarse.
 
 /Documentacion y Postman Json ---> El DER de la base y Json para importar a Postman
 
-
+---
 #### Rutas:
 
 - app.get("/generosdisp", generosdisp); ---> *Muestra los generos disponibles*
@@ -50,7 +64,8 @@ Para usar nodemon hay que utilizar el comando npm run devr.
 [Link búsqueda por actor/actriz](http://localhost:3000/catalogo/actor/Jennifer%20A)
 
 
-- app.get("/posters/:posterid", poster); 
+- app.get("/posters/:posterid", poster); ---> *Muestra los posters al hacer click en el campo posters del Json resultado.
+Solo disponible para los tres primeros registros.*
 
 [Link para ver posters](http://localhost:3000/posters/1.jpg)
 
@@ -59,16 +74,51 @@ Para usar nodemon hay que utilizar el comando npm run devr.
 [Link PATH incorrecto](http://localhost:3000/)
 
 ---
- #### Breve descripción de la aplicación:
-El programa principal es Server-raw.js. El mismo procesa las rutas entrantes y las pasa a sus correspondientes
-funciones que están en /src/controladores/raw.js.
 
-Las funciones en el controlador ejecutan Querys que están en /src/querys.
-Hay dos archivos en dicho directorio: 
-- listados.js contiene constantes con los querys estáticos (sin parámetros) o vistas
-- querys.js contiene querys conteniendo la palabra clave "Consulta", la cual será reemplazada
-    por el id, nombre, actor...etc contenido en la consulta realizada por el usuario.
+**Tablas de la base de datos**
+
+
+| PELICULAS |
+|-----------|
+
+| idpeli | poster | titulo | resumen | temporada | trailer |
+|--------|--------|--------|---------|-----------|---------|
+
+| CATEGORIAS |
+|------------|
+
+| idcategoria | categoria |
+|-------------|-----------|
+
+| CATEGORIASINTER |
+|-----------------|
+
+| idcategoriainter | Idpeli (fk4) | idcategoria (fk3) |
+|------------------|--------------|-------------------|
+
+| ACTORES |
+|---------|
+
+| idactor | nombreyapellido | apellido | nombre |
+|---------|-----------------|----------|--------|
+
+| REPARTOSINTER |
+|---------------|
+
+| idrep | idpeli (fk1) | idactor1 (fk6) |
+|-------|--------------|----------------|
+
+| GENEROS |
+|---------|
+
+| idgenero | genero |
+|----------|--------|
+
+| GENEROSINTER |
+|--------------|
+
+| idgenerointer | idpeli (fk2) | idgenero (fk5) |
+|---------------|--------------|----------------|
+
 
  
-
-**nota:** No pude realizar el chequeo de campo vacío y caracteres no numéricos en los campos id e importe debido a que Postman no admite dichos campos erroneos. Por lo que veo el parser de Postman lo rechaza. Igual dejo las funciones de chequeo de dichos errores ya que creo que si el frontend no está bien codeado podría dejar pasar campos con null y erroneos.
