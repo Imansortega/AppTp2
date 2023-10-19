@@ -13,41 +13,40 @@ const Genero = require("../modelos/generos.js");
 const Generointer = require("../modelos/generosinter.js");
 const Categoria = require("../modelos/categorias.js");
 const Categoriainter = require("../modelos/categoriasinter.js");
-const Generosdisponibles = require("../modelos/generosdisponibles");
-const Peliculasview = require("../modelos/peliculasview");
 
 Pelicula.belongsToMany(Categoria, {
   through: Categoriainter,
-  foreignKey: "idpeli", // Foreign key in Categoriainter that references Pelicula
-  otherKey: "idcategoria", // Foreign key in Categoriainter that references Categoria
+  foreignKey: "idpeli",
+  otherKey: "idcategoria",
 });
 Categoria.belongsToMany(Pelicula, {
   through: Categoriainter,
-  foreignKey: "idcategoria", // Foreign key in Categoriainter that references Categoria
-  otherKey: "idpeli", // Foreign key in Categoriainter that references Pelicula
+  foreignKey: "idcategoria",
+  otherKey: "idpeli",
 });
 
 Pelicula.belongsToMany(Genero, {
   through: Generointer,
-  foreignKey: "idpeli", // Foreign key in Generointer that references Pelicula
-  otherKey: "idgenero", // Foreign key in Generointer that references Genero
+  foreignKey: "idpeli",
+  otherKey: "idgenero",
 });
 Genero.belongsToMany(Pelicula, {
   through: Generointer,
-  foreignKey: "idgenero", // Foreign key in Genero that references Genero
-  otherKey: "idpeli", // Foreign key in Generointer that references Pelicula
+  foreignKey: "idgenero",
+  otherKey: "idpeli",
 });
 
 Pelicula.belongsToMany(Actor, {
   through: Reparto,
-  foreignKey: "idpeli", // Foreign key in Generointer that references Pelicula
-  otherKey: "idactor", // Foreign key in Generointer that references Genero
+  foreignKey: "idpeli",
+  otherKey: "idactor",
 });
 Actor.belongsToMany(Pelicula, {
   through: Reparto,
-  foreignKey: "idactor", // Foreign key in Genero that references Genero
-  otherKey: "idpeli", // Foreign key in Generointer that references Pelicula
+  foreignKey: "idactor",
+  otherKey: "idpeli",
 });
+
 async function inicializa(req, res, next) {
   try {
     await sequelize.authenticate();
@@ -101,7 +100,6 @@ async function categoriasdisp(req, res) {
 async function catalogo(req, res) {
   try {
     let Todos = await Pelicula.findAll({
-      //----------------------------------
       attributes: [
         "idpeli",
         "poster",
@@ -154,7 +152,6 @@ async function catalogo(req, res) {
           },
         },
       ],
-      //where: { titulo: { [Op.like]: "%Crown%" } },
       group: [
         "idpeli",
         "poster",
@@ -163,18 +160,11 @@ async function catalogo(req, res) {
         "temporadas",
         "trailer",
         "categoria",
-        //"genero",
-        //"apellido",
       ],
       order: [["idpeli", "ASC"]],
       //---------------------------
     });
-    /* Todos = Todos.map(result => ({
-              ...result.toJSON(),
-              categoria: result.getDataValue('categoria').replace(/\"/g, ''),
-          })); */
 
-    console.log(JSON.stringify(Todos, null, 2));
     if (Todos === null) {
       console.log("No se encontró la búsqueda !");
       res.status(404).json("No se encontró la búsqueda !");
@@ -258,18 +248,10 @@ async function catId(req, res) {
         "temporadas",
         "trailer",
         "categoria",
-        //"genero",
-        //"apellido",
       ],
       order: [["idpeli", "ASC"]],
       //---------------------------
     });
-    /* Todos = Todos.map(result => ({
-              ...result.toJSON(),
-              categoria: result.getDataValue('categoria').replace(/\"/g, ''),
-          })); */
-
-    //console.log(JSON.stringify(Todos, null, 2));
     if (Todos.length == 0) {
       console.log("No se encontró la búsqueda !");
       res.status(404).send("No se encontró la búsqueda !");
@@ -353,20 +335,11 @@ async function catnombre(req, res) {
         "temporadas",
         "trailer",
         "categoria",
-        //"genero",
-        //"apellido",
       ],
       order: [["idpeli", "ASC"]],
       //---------------------------
     });
-    /* Todos = Todos.map(result => ({
-              ...result.toJSON(),
-              categoria: result.getDataValue('categoria').replace(/\"/g, ''),
-          })); */
-
-    //console.log(JSON.stringify(Todos, null, 2));
     if (Todos.length == 0) {
-      // 404: No found
       res.status(404).send("No se encontró la búsqueda !");
       console.log("No se encontró la búsqueda !");
     } else {
@@ -440,7 +413,6 @@ async function catgenero(req, res) {
           },
         },
       ],
-      //where: { genero: { [Op.like]: `%${req.params.genero}%` }} ,
       where: {},
       having: Sequelize.literal(`genero LIKE '%${req.params.genero}%'`),
       group: [
@@ -451,18 +423,10 @@ async function catgenero(req, res) {
         "temporadas",
         "trailer",
         "categoria",
-        //"genero",
-        //"apellido",
       ],
       order: [["idpeli", "ASC"]],
       //---------------------------
     });
-    /* Todos = Todos.map(result => ({
-              ...result.toJSON(),
-              categoria: result.getDataValue('categoria').replace(/\"/g, ''),
-          })); */
-
-    //console.log(JSON.stringify(Todos, null, 2));
     if (Todos.length == 0) {
       console.log("No se encontró la búsqueda !");
       res.status(404).json("No se encontró la búsqueda !");
@@ -537,7 +501,6 @@ async function catalogocat(req, res) {
           },
         },
       ],
-      //where: { genero: { [Op.like]: `%${req.params.genero}%` }} ,
       where: {},
       having: Sequelize.literal(`categoria LIKE '%${req.params.categoria}%'`),
       group: [
@@ -552,14 +515,7 @@ async function catalogocat(req, res) {
         //"apellido",
       ],
       order: [["idpeli", "ASC"]],
-      //---------------------------
     });
-    /* Todos = Todos.map(result => ({
-              ...result.toJSON(),
-              categoria: result.getDataValue('categoria').replace(/\"/g, ''),
-          })); */
-
-    console.log(JSON.stringify(Todos, null, 2));
     if (Todos.length == 0) {
       console.log("No se encontró la búsqueda !");
       res.status(404).json("No se encontró la búsqueda !");
@@ -634,7 +590,6 @@ async function actor(req, res) {
           },
         },
       ],
-      //where: { nombreyapellido: { [Op.like]: `%${req.params.nombre}%` }} ,
       where: {},
       having: Sequelize.literal(`reparto LIKE '%${req.params.nombre}%'`),
       group: [
@@ -645,18 +600,10 @@ async function actor(req, res) {
         "temporadas",
         "trailer",
         "categoria",
-        //"genero",
-        //"apellido",
       ],
       order: [["idpeli", "ASC"]],
       //---------------------------
     });
-    /* Todos = Todos.map(result => ({
-              ...result.toJSON(),
-              categoria: result.getDataValue('categoria').replace(/\"/g, ''),
-          })); */
-
-    console.log(JSON.stringify(Todos, null, 2));
     if (Todos.length == 0) {
       console.log("No se encontró la búsqueda !");
       res.status(404).json("No se encontró la búsqueda !");
@@ -702,11 +649,3 @@ module.exports = {
   actor,
   poster,
 };
-
-/* actor,
-    catId,
-    catgenero,
-    catalogocat,
-    catnombre,
-    generosdisp,
-    categoriasdisp, */

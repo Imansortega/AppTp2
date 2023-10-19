@@ -1,5 +1,5 @@
-### TP integrador 2
-### API accceso a BD SQL. 1.0
+### TP integrador 2 Backend UNTREF
+### API accceso a BD SQL. ver 1.0
 #### Ignacio Manso 19/10/2023
 ---
 ### Descripción

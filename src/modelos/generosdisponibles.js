@@ -1,22 +1,19 @@
 const DataTypes = require("sequelize");
 const sequelize = require("../conexion/connection");
-const Generosdisponibles = sequelize.define('Generosdisponibles', {
-    /* idgenero: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-        }, */
-    
+const Generosdisponibles = sequelize.define(
+  "Generosdisponibles",
+  {
     todoslosgeneros: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        default: "",
-        freezeTableName: true,
+      type: DataTypes.STRING,
+      allowNull: false,
+      default: "",
+      freezeTableName: true,
     },
-
-}, {
-    tableName: 'generosdisponibles',
-    timestamps: false, 
-}) 
+  },
+  {
+    tableName: "generosdisponibles",
+    timestamps: false,
+  }
+);
 
 module.exports = Generosdisponibles;

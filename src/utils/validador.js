@@ -11,7 +11,7 @@ function validarTextInputs(query) {
   }
 }
 
-// Valida que solo haya caracteres alfabéticos
+// Valida que solo haya caracteres alfabéticos mas  0-9 y %
 function validarTextInputsExtendido(query) {
   let ExpRegSoloLetras = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9% ]+$/;
   // Distinto de NULL, hay match ---> true !!
