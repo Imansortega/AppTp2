@@ -17,13 +17,14 @@ El módulo de conexión es compartido y está en /src/conexion
 
 La validación de los inputs de usuario se realiza con las funciones en /src/utils/validador.js
 
+
 **Server-raw.js**:
 
 Emplea la opción raw queries de sequalize, usando scripts Mysql, los cuales están definidos en /src/querys.
 
-En listados.js están los listados estaticos para consultas sin filtro de búsquedas.
+En /src/querys/listados.js están los listados estaticos para consultas sin filtro de búsquedas.
 
-En querys.js están las consultas para búsquedas. En dicho modulo las consultas tienen una palabra clave ("Consulta") la cual será reemplazada en la aplicación por el parámetro de búsqueda id, nombre, gemero, etc.
+En /src/querys/querys.js están las consultas para búsquedas. En dicho modulo las consultas tienen una palabra clave ("Consulta") la cual será reemplazada en la aplicación por el parámetro de búsqueda id, nombre, gemero, etc.
 
 Para usar nodemon hay que utilizar el comando "npm run devr".
 
