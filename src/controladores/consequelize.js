@@ -13,6 +13,8 @@ const Genero = require("../modelos/generos.js");
 const Generointer = require("../modelos/generosinter.js");
 const Categoria = require("../modelos/categorias.js");
 const Categoriainter = require("../modelos/categoriasinter.js");
+const catalogoview = require("../modelos/catalogoview");
+const Generoview = require("../modelos/generosview")
 
 Pelicula.belongsToMany(Categoria, {
   through: Categoriainter,
@@ -66,6 +68,20 @@ async function inicializa(req, res, next) {
   }
 }
 
+async function generosdispvista(req,res) {
+  try {
+    const todos = await Generoview.findAll();
+    todos.length !== 0
+      ? res.status(200).json(todos)
+      : res.status(404).json({ error: "Tabla vacia" });
+    
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Error en el servidor", descripción: error.message });
+  }
+}
+
 async function generosdisp(req, res) {
   try {
     const todoslosgeneros = await Genero.findAll({
@@ -85,7 +101,7 @@ async function generosdisp(req, res) {
 async function categoriasdisp(req, res) {
   try {
     const todaslascategorias = await Categoria.findAll({
-      attributes: ["categoria"],
+      attributes: ["idcategoria", "categoria"],
     });
 
     todaslascategorias.length !== 0
@@ -96,6 +112,21 @@ async function categoriasdisp(req, res) {
       .status(500)
       .json({ error: "Error en el servidor", descripción: error.message });
   }
+}
+
+async function catalogovista(req,res) {
+  try {
+    const todos = await catalogoview.findAll();
+    todos.length !== 0
+      ? res.status(200).json(todos)
+      : res.status(404).json({ error: "Tabla vacia" });
+    
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Error en el servidor", descripción: error.message });
+  }
+
 }
 
 async function catalogo(req, res) {
@@ -640,7 +671,9 @@ async function poster(req, res) {
 
 module.exports = {
   inicializa,
+  catalogovista,
   catalogo,
+  generosdispvista,
   generosdisp,
   categoriasdisp,
   catId,

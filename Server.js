@@ -10,6 +10,8 @@ const validar = require("./src/utils/validador");
 
 const {
   inicializa,
+  generosdispvista,
+  catalogovista,
   catalogo,
   actor,
   catId,
@@ -26,14 +28,14 @@ const {
 // Authenticate y sync
 app.use(inicializa);
 
-// Géneros disponibles
-app.get("/generosdisp", generosdisp); // http://localhost:3000/generosdisp
+// Géneros disponibles (vista)
+app.get("/generosdisp", generosdispvista); // http://localhost:3000/generosdisp
 
 // Categorias disponibles
 app.get("/categoriasdisp", categoriasdisp); // http://localhost:3000/categoriasdisp
 
-// Catálogo completo
-app.get("/catalogo", catalogo); // // http://localhost:3000/catalogo
+// Catálogo completo (vista)
+app.get("/catalogo", catalogovista); // // http://localhost:3000/catalogo
 
 // Búsqueda por id
 app.get("/catalogo/id/:id", catId); // http://localhost:3000/catalogo/id/3

@@ -3,27 +3,33 @@
 #### Ignacio Manso 19/10/2023
 ---
 ### Descripción
-#### En este trabajo práctico la aplicación tiene dos opciones separadas, Server.js y Server-raw.js, las cuales comparten algunos módulos.
+#### En este trabajo práctico se puede ejecutar la aplicación con dos opciones separadas, Server.js y Server-raw.js, las cuales comparten algunos módulos.
 
 **Server.js**:
 
-Emplea sequalize para acceder a la base y realizar las consultas.
+Emplea sequalize para acceder a la base y realizar las consultas excepto en dos endpoints donde se usan vistas.
 
-Para usar nodemon hay que utilizar el comando "npm run devs".
+Para usar nodemon ya está configurado package.json y hay que utilizar el comando "npm run devs".
 
-El controlador es con sequelize.js y emplea los modelos definidos en la correspondiente carpeta.
+El controlador es consequelize.js y emplea los modelos definidos en la correspondiente carpeta /src/modelos.
 
-La validación de los inputs de usuario se realiza con las funciones en /src/utils/validador.
+El módulo de conexión es compartido y está en /src/conexion
+
+La validación de los inputs de usuario se realiza con las funciones en /src/utils/validador.js
 
 **Server-raw.js**:
 
 Emplea la opción raw queries de sequalize, usando scripts Mysql, los cuales están definidos en /src/querys.
 
-En listados.js están los listados estaticos para consultas sin búsquedas.
+En listados.js están los listados estaticos para consultas sin filtro de búsquedas.
 
 En querys.js están las consultas para búsquedas. En dicho modulo las consultas tienen una palabra clave ("Consulta") la cual será reemplazada en la aplicación por el parámetro de búsqueda id, nombre, gemero, etc.
 
 Para usar nodemon hay que utilizar el comando "npm run devr".
+
+El módulo de conexión es compartido y está en /src/conexion
+
+La validación de los inputs de usuario se realiza con las funciones en /src/utils/validador.js
 
 ---
 
@@ -33,10 +39,10 @@ Para usar nodemon hay que utilizar el comando "npm run devr".
 
 /SQL dump ---> *El dump de la base lista para cargarse.*
 
-/Documentacion y Postman Json ---> *El Dbdesigner DER de la base, Model de Mysql para la base tp2_dev, JPG del esquema y Json para importar a Postman*
+/Documentacion_y_Postman_Json ---> *El Dbdesigner DER de la base, Model de Mysql para la base tp2_dev, JPG del esquema y Json para importar a Postman*
 
 
-P.D. Se envía un archivo ".env para renombrar" con todos los datos menos pwd.
+P.D. Se envía un archivo ".env para renombrar" con todos los datos del archivo .env (menos la password).
 
 ---
 #### Rutas:
@@ -124,4 +130,8 @@ Solo disponible para los tres primeros registros.*
 |---------------|--------------|----------------|
 
 ```
+
+**Esquema**
+
+![](Documentacion_y_Postman_Json/DER.jpg "")
  

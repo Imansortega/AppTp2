@@ -44,6 +44,26 @@ INSERT INTO `actores` VALUES (1,'Adeel Akhtar','Akhtar','Adeel'),(2,'Luke Allen-
 UNLOCK TABLES;
 
 --
+-- Temporary view structure for view `catalogoview`
+--
+
+DROP TABLE IF EXISTS `catalogoview`;
+/*!50001 DROP VIEW IF EXISTS `catalogoview`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `catalogoview` AS SELECT 
+ 1 AS `idpeli`,
+ 1 AS `poster`,
+ 1 AS `titulo`,
+ 1 AS `Categoria`,
+ 1 AS `Genero`,
+ 1 AS `resumen`,
+ 1 AS `temporadas`,
+ 1 AS `Reparto`,
+ 1 AS `trailer`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `categorias`
 --
 
@@ -68,14 +88,14 @@ INSERT INTO `categorias` VALUES (1,'Serie'),(2,'Película');
 UNLOCK TABLES;
 
 --
--- Temporary view structure for view `categoriasdisponibles`
+-- Temporary view structure for view `categoriasdisponiblesview`
 --
 
-DROP TABLE IF EXISTS `categoriasdisponibles`;
-/*!50001 DROP VIEW IF EXISTS `categoriasdisponibles`*/;
+DROP TABLE IF EXISTS `categoriasdisponiblesview`;
+/*!50001 DROP VIEW IF EXISTS `categoriasdisponiblesview`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `categoriasdisponibles` AS SELECT 
+/*!50001 CREATE VIEW `categoriasdisponiblesview` AS SELECT 
  1 AS `Categorias Disponibles`*/;
 SET character_set_client = @saved_cs_client;
 
@@ -133,15 +153,16 @@ INSERT INTO `generos` VALUES (1,'Acción'),(2,'Aventura'),(3,'Ciencia Ficción')
 UNLOCK TABLES;
 
 --
--- Temporary view structure for view `generosdisponibles`
+-- Temporary view structure for view `generosdisponiblesview`
 --
 
-DROP TABLE IF EXISTS `generosdisponibles`;
-/*!50001 DROP VIEW IF EXISTS `generosdisponibles`*/;
+DROP TABLE IF EXISTS `generosdisponiblesview`;
+/*!50001 DROP VIEW IF EXISTS `generosdisponiblesview`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `generosdisponibles` AS SELECT 
- 1 AS `todoslosgeneros`*/;
+/*!50001 CREATE VIEW `generosdisponiblesview` AS SELECT 
+ 1 AS `idgenero`,
+ 1 AS `genero`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -202,23 +223,6 @@ INSERT INTO `peliculas` VALUES (1,'http://localhost:3000/posters/1.jpg','The Cro
 UNLOCK TABLES;
 
 --
--- Temporary view structure for view `peliculasview`
---
-
-DROP TABLE IF EXISTS `peliculasview`;
-/*!50001 DROP VIEW IF EXISTS `peliculasview`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `peliculasview` AS SELECT 
- 1 AS `idpeli`,
- 1 AS `poster`,
- 1 AS `titulo`,
- 1 AS `resumen`,
- 1 AS `temporadas`,
- 1 AS `trailer`*/;
-SET character_set_client = @saved_cs_client;
-
---
 -- Table structure for table `repartosinter`
 --
 
@@ -248,10 +252,10 @@ INSERT INTO `repartosinter` VALUES (1,1,69),(2,2,167),(3,3,151),(4,4,97),(5,5,19
 UNLOCK TABLES;
 
 --
--- Final view structure for view `categoriasdisponibles`
+-- Final view structure for view `catalogoview`
 --
 
-/*!50001 DROP VIEW IF EXISTS `categoriasdisponibles`*/;
+/*!50001 DROP VIEW IF EXISTS `catalogoview`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
@@ -260,16 +264,16 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `categoriasdisponibles` AS select group_concat(`cat`.`categoria` separator ', ') AS `Categorias Disponibles` from `categorias` `cat` */;
+/*!50001 VIEW `catalogoview` AS select `pelis`.`idpeli` AS `idpeli`,`pelis`.`poster` AS `poster`,`pelis`.`titulo` AS `titulo`,`cat`.`categoria` AS `Categoria`,(select group_concat(distinct `gen`.`genero` separator ',') from (`generosinter` `genin` join `generos` `gen` on((`genin`.`idgenero` = `gen`.`idgenero`))) where (`genin`.`idpeli` = `pelis`.`idpeli`)) AS `Genero`,`pelis`.`resumen` AS `resumen`,`pelis`.`temporadas` AS `temporadas`,(select group_concat(distinct `act`.`nombreyapellido` separator ',') from (`repartosinter` `repin` join `actores` `act` on((`repin`.`idactor` = `act`.`idactor`))) where (`repin`.`idpeli` = `pelis`.`idpeli`)) AS `Reparto`,`pelis`.`trailer` AS `trailer` from ((`peliculas` `pelis` join `categoriasinter` `catin` on((`pelis`.`idpeli` = `catin`.`idpeli`))) join `categorias` `cat` on((`catin`.`idcategoria` = `cat`.`idcategoria`))) group by `pelis`.`idpeli`,`cat`.`categoria` order by `pelis`.`idpeli` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
--- Final view structure for view `generosdisponibles`
+-- Final view structure for view `categoriasdisponiblesview`
 --
 
-/*!50001 DROP VIEW IF EXISTS `generosdisponibles`*/;
+/*!50001 DROP VIEW IF EXISTS `categoriasdisponiblesview`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
@@ -278,16 +282,16 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `generosdisponibles` AS select group_concat(`gen`.`genero` separator ', ') AS `todoslosgeneros` from `generos` `gen` */;
+/*!50001 VIEW `categoriasdisponiblesview` AS select group_concat(`cat`.`categoria` separator ', ') AS `Categorias Disponibles` from `categorias` `cat` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
 
 --
--- Final view structure for view `peliculasview`
+-- Final view structure for view `generosdisponiblesview`
 --
 
-/*!50001 DROP VIEW IF EXISTS `peliculasview`*/;
+/*!50001 DROP VIEW IF EXISTS `generosdisponiblesview`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
@@ -296,7 +300,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `peliculasview` AS select `peliculas`.`idpeli` AS `idpeli`,`peliculas`.`poster` AS `poster`,`peliculas`.`titulo` AS `titulo`,`peliculas`.`resumen` AS `resumen`,`peliculas`.`temporadas` AS `temporadas`,`peliculas`.`trailer` AS `trailer` from `peliculas` */;
+/*!50001 VIEW `generosdisponiblesview` AS select `gen`.`idgenero` AS `idgenero`,`gen`.`genero` AS `genero` from `generos` `gen` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -310,4 +314,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-19 15:18:55
+-- Dump completed on 2023-10-20  9:43:26
