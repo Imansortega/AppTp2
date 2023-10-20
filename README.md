@@ -46,7 +46,13 @@ La validación de los inputs de usuario se realiza con las funciones en /src/uti
 P.D. Se envía un archivo ".env para renombrar" con todos los datos del archivo .env (menos la password).
 
 ---
-#### Rutas:
+#### Rutas: 
+
+
+Información de los endpoints y su uso.
+Se agregan links para uso del endpoint. Después se puede modificar a gusto en el navegador para los casos donde hay filtrado.
+Para el empleo de Postman se puede usar el Json para importar a Postman que está en /Documentacion_y_Postman_Json.
+
 
 - app.get("/generosdisp", generosdisp); ---> *Muestra los generos disponibles*
 
