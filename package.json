@@ -6,7 +6,6 @@
   "scripts": {
     "devr": "nodemon ./Server-raw.js",
     "devs": "nodemon ./Server.js",
-    "devd": "nodemon ./Server_des.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
