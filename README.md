@@ -93,7 +93,7 @@ Solo disponible para los tres primeros registros.*
 
 **Tablas de la base de datos**
 
-```
+
 | PELICULAS |
 |-----------|
 
@@ -136,7 +136,6 @@ Solo disponible para los tres primeros registros.*
 | idgenerointer | idpeli (fk2) | idgenero (fk5) |
 |---------------|--------------|----------------|
 
-```
 
 **Esquema**
 
