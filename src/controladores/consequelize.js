@@ -1,3 +1,5 @@
+/* Controladores para las rutas */
+  
 const sequelize = require("../conexion/connection");
 const { Sequelize, QueryTypes } = require("sequelize");
 const { Op } = require("sequelize");
