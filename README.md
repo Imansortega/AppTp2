@@ -91,7 +91,7 @@ Solo disponible para los tres primeros registros.*
 
 ---
 
-**Tablas de la base de datos**
+#### Tablas de la base de datos
 
 
 | PELICULAS |
@@ -137,7 +137,7 @@ Solo disponible para los tres primeros registros.*
 |---------------|--------------|----------------|
 
 
-**Esquema**
+#### Esquema
 
 ![](Documentacion_y_Postman_Json/DER.jpg "")
  
