@@ -91,7 +91,7 @@ Solo disponible para los tres primeros registros.*
 
 ---
 
-#### Tablas de la base de datos
+#### Tablas de la base de datos tp2_dev
 
 
 | PELICULAS |
@@ -140,7 +140,7 @@ Solo disponible para los tres primeros registros.*
 
 
 
-#### Esquema
+#### Diagrama entidad relación tp2_dev
 
 ![](Documentacion_y_Postman_Json/DER.jpg "")
  
