@@ -136,6 +136,9 @@ Solo disponible para los tres primeros registros.*
 | idgenerointer | idpeli (fk2) | idgenero (fk5) |
 |---------------|--------------|----------------|
 
+---
+
+
 
 #### Esquema
 
