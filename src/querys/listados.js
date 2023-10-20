@@ -21,7 +21,8 @@ peliculas pelis
 categoriasinter catin ON (pelis.idpeli = catin.idpeli)
     JOIN 
 categorias cat ON (catin.idcategoria = cat.idcategoria)
-GROUP BY pelis.idpeli, cat.categoria`
+GROUP BY pelis.idpeli, cat.categoria
+ORDER by pelis.idpeli`
 
 // Listado de generos disponibles
 const Query2 = `SELECT 

@@ -53,7 +53,7 @@ Información de los endpoints y su uso.
 
 Se agregan links para uso del endpoint. Conviene hacer click en botón derecho del mouse y abrir en otra pestaña. Después se puede modificar el URL y modificar a gusto en el navegador para los casos donde hay filtrado.
 
-Para el empleo de Postman se puede usar el Json para importar a Postman que está en /Documentacion_y_Postman_Json.
+Para el empleo de Postman se puede usar el Json para importar a Postman, que está en /Documentacion_y_Postman_Json.
 
 
 - app.get("/generosdisp", generosdisp); ---> *Muestra los generos disponibles*
