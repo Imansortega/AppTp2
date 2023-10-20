@@ -197,7 +197,7 @@ async function catalogo(req, res) {
       //---------------------------
     });
 
-    if (Todos === null) {
+    if (Todos.length == 0) {
       console.log("No se encontró la búsqueda !");
       res.status(404).json("No se encontró la búsqueda !");
     } else {
