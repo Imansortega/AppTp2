@@ -48,7 +48,7 @@ P.D. Se envía un archivo ".env para renombrar" con todos los datos del archivo 
 ---
 #### Rutas: 
 
-
+    
 Información de los endpoints y su uso.
 Se agregan links para uso del endpoint. Después se puede modificar a gusto en el navegador para los casos donde hay filtrado.
 Para el empleo de Postman se puede usar el Json para importar a Postman que está en /Documentacion_y_Postman_Json.
@@ -94,44 +94,44 @@ Solo disponible para los tres primeros registros.*
 **Tablas de la base de datos**
 
 ```
-| **PELICULAS** |
-|---------------|
+| PELICULAS |
+|-----------|
 
 | idpeli | poster | titulo | resumen | temporada | trailer |
 |--------|--------|--------|---------|-----------|---------|
 
-| **CATEGORIAS** |
-|----------------|
+| CATEGORIAS |
+|------------|
 
 | idcategoria | categoria |
 |-------------|-----------|
 
-| **CATEGORIASINTER** |
-|---------------------|
+| CATEGORIASINTER |
+|-----------------|
 
 | idcategoriainter | Idpeli (fk4) | idcategoria (fk3) |
 |------------------|--------------|-------------------|
 
-| **ACTORES** |
-|-------------|
+| ACTORES |
+|---------|
 
 | idactor | nombreyapellido | apellido | nombre |
 |---------|-----------------|----------|--------|
 
-| **REPARTOSINTER** |
-|-------------------|
+| REPARTOSINTER |
+|---------------|
 
 | idrep | idpeli (fk1) | idactor1 (fk6) |
 |-------|--------------|----------------|
 
-| **GENEROS** |
-|-------------|
+| GENEROS |
+|---------|
 
 | idgenero | genero |
 |----------|--------|
 
-| **GENEROSINTER** |
-|------------------|
+| GENEROSINTER |
+|--------------|
 
 | idgenerointer | idpeli (fk2) | idgenero (fk5) |
 |---------------|--------------|----------------|
