@@ -94,47 +94,6 @@ Solo disponible para los tres primeros registros.*
 **Tablas de la base de datos**
 
 
-| PELICULAS |
-|-----------|
-
-| idpeli | poster | titulo | resumen | temporada | trailer |
-|--------|--------|--------|---------|-----------|---------|
-
-| CATEGORIAS |
-|------------|
-
-| idcategoria | categoria |
-|-------------|-----------|
-
-| CATEGORIASINTER |
-|-----------------|
-
-| idcategoriainter | Idpeli (fk4) | idcategoria (fk3) |
-|------------------|--------------|-------------------|
-
-| ACTORES |
-|---------|
-
-| idactor | nombreyapellido | apellido | nombre |
-|---------|-----------------|----------|--------|
-
-| REPARTOSINTER |
-|---------------|
-
-| idrep | idpeli (fk1) | idactor1 (fk6) |
-|-------|--------------|----------------|
-
-| GENEROS |
-|---------|
-
-| idgenero | genero |
-|----------|--------|
-
-| GENEROSINTER |
-|--------------|
-
-| idgenerointer | idpeli (fk2) | idgenero (fk5) |
-|---------------|--------------|----------------|
 
 
 **Esquema**
