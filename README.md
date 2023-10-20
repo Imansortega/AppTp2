@@ -1,6 +1,6 @@
 ### TP integrador 2 Backend UNTREF
 ### API accceso a BD SQL. ver 1.0
-#### Ignacio Manso 19/10/2023
+#### Ignacio Manso 20/10/2023
 ---
 ### Descripción
 #### En este trabajo práctico se puede ejecutar la aplicación con dos opciones separadas, Server.js y Server-raw.js, las cuales comparten algunos módulos.
@@ -87,44 +87,44 @@ Solo disponible para los tres primeros registros.*
 **Tablas de la base de datos**
 
 ```
-| *PELICULAS* |
-|-------------|
+| **PELICULAS** |
+|---------------|
 
 | idpeli | poster | titulo | resumen | temporada | trailer |
 |--------|--------|--------|---------|-----------|---------|
 
-| *CATEGORIAS* |
-|--------------|
+| **CATEGORIAS** |
+|----------------|
 
 | idcategoria | categoria |
 |-------------|-----------|
 
-| *CATEGORIASINTER* |
-|-------------------|
+| **CATEGORIASINTER** |
+|---------------------|
 
 | idcategoriainter | Idpeli (fk4) | idcategoria (fk3) |
 |------------------|--------------|-------------------|
 
-| *ACTORES* |
-|-----------|
+| **ACTORES** |
+|-------------|
 
 | idactor | nombreyapellido | apellido | nombre |
 |---------|-----------------|----------|--------|
 
-| *REPARTOSINTER* |
-|-----------------|
+| **REPARTOSINTER** |
+|-------------------|
 
 | idrep | idpeli (fk1) | idactor1 (fk6) |
 |-------|--------------|----------------|
 
-| *GENEROS* |
-|-----------|
+| **GENEROS** |
+|-------------|
 
 | idgenero | genero |
 |----------|--------|
 
-| *GENEROSINTER* |
-|----------------|
+| **GENEROSINTER** |
+|------------------|
 
 | idgenerointer | idpeli (fk2) | idgenero (fk5) |
 |---------------|--------------|----------------|

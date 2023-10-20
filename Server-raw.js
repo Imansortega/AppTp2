@@ -1,7 +1,7 @@
 /*  TP integrador 2 Backend UNTREF
 *   API accceso a BD SQL. ver 1.0
 *   Versión usando Raw Queries
-*   Ignacio Manso 19/10/2023    */
+*   Ignacio Manso 20/10/2023    */
 
 const express = require("express");
 const app = express();
